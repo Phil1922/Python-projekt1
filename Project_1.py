@@ -106,13 +106,13 @@ if (
             word_length = len(word.strip(".,!?;:"))
             length_counts[word_length] = length_counts.get(word_length, 0) + 1
 
-        print(f"LEN|{"OCCERENCES":^16}|NR")
+        print(f"LEN|{"OCCERENCES":^16}|NR.")
         print(separator)
         
         for word_length in sorted(length_counts):
             count = length_counts[word_length]
             print(f"{word_length:>3}|{'*' * count:<16}|{count:<3}")
-        
+            
         print(separator)
 else:
     print("Unregistered user, terminating the program.")
