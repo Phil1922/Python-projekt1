@@ -115,5 +115,5 @@ if (
             
         print(separator)
 else:
-    print("Unregistered user, terminating the program.")
+    print("Unregistered user or wrong password. Terminating the program.")
     exit()
