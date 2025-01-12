@@ -58,7 +58,7 @@ if (
     number_of_text = input(
         f"Please enter an integer between {min_value} and {max_value} to select text:"
     )
-    if number_of_text not in {"1", "2", "3"}:
+    if number_of_text not in map(str, range(min_value, max_value + 1)):
         print(separator)
         print("An invalid symbol was entered.")
         print(f"Please enter an integer between {min_value} to {max_value}")
@@ -81,21 +81,16 @@ if (
             if word.istitle():
                 titlecase_number_of_words.append(word)
 
-        for word in words:
-            if word.isupper() and word.isalpha():
-                    uppercase_number_of_words.append(word)
+            elif word.isupper() and word.isalpha():
+                uppercase_number_of_words.append(word)
 
-        for word in words:
-            if word.islower():
+            elif word.islower():
                 lowercase_number_of_words.append(word)
         
-        for word in words:
-            if word.isdigit():
+            elif word.isdigit():
                 number_of_numeric_strings.append(word)
-        
-        for num in number_of_numeric_strings:
-            sum_of_numeric_strings += int(num)
-
+                sum_of_numeric_strings += int(word)
+                
         print(f"There are {total_number_of_words} words in the selected text.")
         print(f"There are {len(titlecase_number_of_words)} titlecase words.")
         print(f"There are {len(uppercase_number_of_words)} uppercase words.")
@@ -106,19 +101,19 @@ if (
         print(separator)
 
         length_counts = {}
-        for word in words:
-            word_length = len(word)
-            length_counts[word_length] = length_counts.get(word_length, 0) + 1
-        print("LEN|  OCCURRENCES   |NR")
         
+        for word in words:
+            word_length = len(word.strip(".,!?;:"))
+            length_counts[word_length] = length_counts.get(word_length, 0) + 1
+
+        print(f"LEN|{"OCCERENCES":^16}|NR")
         print(separator)
-       
+        
         for word_length in sorted(length_counts):
             count = length_counts[word_length]
-            print(f"{word_length:>3}|{'*' * count:<16}|{count:<2}")
-
+            print(f"{word_length:>3}|{'*' * count:<16}|{count:<3}")
+        
         print(separator)
-
 else:
     print("Unregistered user, terminating the program.")
     exit()
